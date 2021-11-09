@@ -28,7 +28,7 @@ function App() {
             <Navbar FetchData={FetchData}/>
             <Switch>
                 <Route path="/" exact component={Home} />
-                <Route path={["/pokedex/", "/pokedex/offset=:offset/limit=:limit"]}>
+                <Route exact path={["/pokedex/", "/pokedex/offset=:offset/limit=:limit"]}>
                     <Pokedex pokemonData={pokemonData} FetchData={FetchData} isLoading={isLoading} allData={allData}/>
                 </Route>
                 <Route path="/pokemon/:id" component={Pokemon} />

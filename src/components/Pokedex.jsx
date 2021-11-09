@@ -36,6 +36,7 @@ const Pokedex = ({FetchData, pokemonData, isLoading, allData}) => {
     }
 
     useEffect(() => {
+        console.log(offset,limit)
         if(offset !== null && offset !== '' && limit !== null && limit !== ''){
             FetchData(`https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`);
         }
