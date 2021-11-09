@@ -51,7 +51,7 @@ const Navbar = ({ FetchData }) => {
                     </div>
                     <div className="d-flex d-none d-md-flex">
                         <input className="form-control me-2" id="search-input" type="search" placeholder="Type a name or id" aria-label="Search" onKeyPress={handleEnter}/>
-                        <a className="btn btn-danger" id="search-button" onClick={() => handleSearchButton()}>Search</a>
+                        <button className="btn btn-danger" id="search-button" onClick={() => handleSearchButton()}>Search</button>
                     </div>
                 </div>
             </div>
