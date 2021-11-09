@@ -33,7 +33,7 @@ const Pokemon = () => {
                 setIsLoading(false);
                 setPokemon({});
             });
-
+            
             setSpecies(data);
         }).catch(function(error) {
             setIsLoading(false);
@@ -45,13 +45,17 @@ const Pokemon = () => {
 
     if(isLoading){
         return (
-            <div className="container page-container">
+            <>
+                <div className="container page-container">
                 <div className="row">
                     <div className="col-12 0ffset-0 col-md-10 offset-md-1 text-center">
                         <h1 className="text-white">Loading...</h1>
                     </div>
                 </div>
-            </div>)
+                </div>
+                <div className="pokemon-background"></div>
+            </>
+        )
     }
     return (
         <>
@@ -145,6 +149,7 @@ const Pokemon = () => {
                     </div>
                 </div>
             </div>
+            <div className="pokemon-background first"></div>
         </>
     );
 };

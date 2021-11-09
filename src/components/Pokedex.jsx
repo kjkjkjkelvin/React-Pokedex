@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useParams, Link,  useHistory } from "react-router-dom";
 
 const ImgLoaded = (el) =>{
-    const elParent = el.target.parentElement.parentElement.parentElement;
+    const elParent = el.target.parentElement.parentElement.parentElement.parentElement;
     elParent.classList.remove('not-loaded');
 }
 
@@ -69,10 +69,12 @@ const Pokedex = ({FetchData, pokemonData, isLoading, allData}) => {
                             var pokeNumber = pokeNumberArray[pokeNumberArray.length - 2];
                             return ( 
                                 <div className="col-6 col-md-4 col-lg-3 card-container mb-4 not-loaded" key={i}>
-                                    <div className="card p-2">
+                                    <div className="card p-2 ">
                                         <Link to={`/pokemon/${pokeNumber}`} className="card-view text-decoration-none">
-                                            <img alt={value.name + ` image`} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeNumber}.png`} className="card-img" onLoad={ImgLoaded} />
-                                            
+                                            <div className="position-relative">
+                                                <img  className="card-img front-image" alt={value.name + ` image`} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeNumber}.png`} onLoad={ImgLoaded} />
+                                                <img className="card-img back-image" alt={value.name + ` image`} src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokeNumber}.png`} onLoad={ImgLoaded} />
+                                            </div>
                                             <div className="card-body pb-2 pt-3">
                                                 <h4 className="text-right m-0">{'#' + ("000" + pokeNumber).slice(-3)} </h4>
                                                 <h3 className="card-title text-capitalize m-0"> {value.name}</h3>
@@ -89,6 +91,7 @@ const Pokedex = ({FetchData, pokemonData, isLoading, allData}) => {
                     </div>
                 </div>
             </div>
+            <div className="pokemon-background second"></div> 
         </>
     );
 };
