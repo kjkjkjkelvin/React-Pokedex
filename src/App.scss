@@ -1,0 +1,124 @@
+body{
+    background-color: #222;
+}
+nav.topnav{
+    // height: 60px;
+    position: fixed;
+    background-color: #111;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    overflow-y: hidden;
+    z-index: 500;
+    [data-bs-toggle~="collapse"] {
+        cursor: pointer;
+    }
+}
+
+.page-container{
+    margin-top: 75px;
+}
+
+//pokemon page
+    .details-row{
+        opacity: 1;
+        transition: 0.5s;
+    }
+    .img-pokemon{
+        width: 100%;
+        height: auto;
+        border-radius: 0.75em;
+        background-color: #11111122;
+    }
+    .evo-pill{
+        position: absolute;
+        bottom: 15px;
+        left: 6px;
+    }
+    .details-card{
+        border-radius: 0.75em;
+        background-color: #eee;
+    }
+    .sprite-pokemon{
+        height: 5em;
+        width: auto;
+    }
+    .big-h1{
+        font-size: 3.5rem!important;  
+    }
+
+//types color
+$types: ("bug": #729f3f, "dark": #707070, "dragon": #53a4cf,
+         "electric": #eed535, "fairy": #fdb9e9, "fighting": #d56723,
+         "fire": #fd7d24, "flying": #3dc7ef, "ghost": #7b62a3,
+         "grass": #9bcc50, "ground": #f7de3f, "ice": #51c4e7,
+         "normal": #a4acaf, "poison": #b97fc9, "psychic": #f366b9,
+         "rock": #a38c21, "steel": #9eb7b8, "water": #4592c4);
+ 
+@each $type, $color in $types {
+    .bg-type-#{$type} {
+        background-color: $color;
+        color: lighten($color, 40%);
+        @if lightness($color) > 55%{
+            color: #333;
+        }
+    }
+    .light-bg-type-#{$type} {
+        background-color: rgba(lighten($color, 20%), 0.1);
+        border: 2px $color solid;
+    }
+    .lighter-bg-type-#{$type} {
+        background-color: lighten($color, 35%);
+        border: 2px lighten($color, 35%) solid;
+        color: darken($color, 40%);
+    }
+    .border-type-#{$type} {
+        border: 2px $color solid;
+    }
+    .text-type-#{$type} {
+        color: $color;
+    }
+}
+
+
+
+.not-loaded{opacity: 0!important;}
+.card-container{
+    opacity: 1;
+    transition: 0.5s;
+   .card{
+    background-color: transparent;
+    border-radius: 15px;
+    border: 0;
+    color: #222;
+    transition: 0.15s;
+    background-color: #ffffffcc;
+        .card-img{
+            background-color: #efefef;
+            border-radius: 15px;
+            width:100%;
+            object-fit: cover;
+        }
+        .card-body{
+            bottom: 0;
+            width: 100%;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+            h1,h2,h3,h4,h5,h6,span{
+                text-transform: capitalize!important;
+                color: #222;
+            }
+        }
+        &:hover{
+            transition: 0.2s;
+            transform: scale(1.03);
+            z-index:400;
+            box-shadow: 0px 0px 20px #00000022;
+            .card-body{
+                opacity: 1;
+                transition: 0.2s;
+            }
+        }
+
+    } 
+}
