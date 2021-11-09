@@ -48,19 +48,26 @@ const Pokedex = ({FetchData, pokemonData, isLoading, allData}) => {
 
     if(isLoading){
         return (
-            <div className="container page-container">
-                <div className="row">
-                    <header className="hero-container text-white px-4 py-5">
-                        <h1 className="text-center">Pokémon List</h1>
-                    </header>
+            <>
+                <div className="container page-container">
+                    <div className="row">
+                        <header className="text-white px-4 py-5">
+                            <h1 className="text-center">Pokémon List</h1>
+                        </header>
+                        <header className="text-white px-4 py-5">
+                            <h1 className="text-center">Loading...</h1>
+                        </header>
+                    </div>
                 </div>
-            </div>)
+                <div className="pokemon-background second"></div>
+            </>
+        )
     }
     return (
         <>
             <div className="container page-container">
                 <div className="row">
-                    <header className="hero-container text-white px-4 py-5">
+                    <header className="text-white px-4 py-5">
                         <h1 className="text-center">Pokémon List</h1>
                     </header>
                     {

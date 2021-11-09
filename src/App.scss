@@ -46,46 +46,19 @@ body{
         height: 2.5em;
     }
 
-//pokemon page
-    .details-row{
-        opacity: 1;
-        transition: 0.5s;
-    }
-    .img-pokemon{
-        width: 100%;
-        height: auto;
-        border-radius: 0.75em;
-        background-color: #11111122;
-    }
-    .evo-pill{
-        position: absolute;
-        bottom: 15px;
-        left: 6px;
-    }
-    .details-card{
-        border-radius: 0.75em;
-        background-color: #eee;
-    }
-    .sprite-pokemon{
-        height: 5em;
-        width: auto;
-    }
-    .big-h1{
-        font-size: 3.5rem!important;  
-    }
-
 //types color
     $types: ("bug": #729f3f, "dark": #707070, "dragon": #53a4cf,
             "electric": #eed535, "fairy": #fdb9e9, "fighting": #d56723,
             "fire": #fd7d24, "flying": #3dc7ef, "ghost": #7b62a3,
             "grass": #9bcc50, "ground": #f7de3f, "ice": #51c4e7,
             "normal": #a4acaf, "poison": #b97fc9, "psychic": #f366b9,
-            "rock": #a38c21, "steel": #9eb7b8, "water": #4592c4);
+            "rock": #a38c21, "steel": #9eb7b8, "water": #4592c4,
+            "mythical": #9d00c9, "legendary": #ac1e1e);
     
     @each $type, $color in $types {
         .bg-type-#{$type} {
             background-color: $color;
-            color: lighten($color, 35%);
+            color: lighten($color, 45%);
             @if lightness($color) > 55%{
                 color: #333;
             }
@@ -115,7 +88,8 @@ body{
         opacity: 1;
         transition: 0.5s;
         .card{
-            background-color: transparent;
+            background-size: 10em!important;
+            background-image: url("./components/images/background-pattern-3.png");
             border-radius: 15px;
             border: 0;
             color: #222;
@@ -161,4 +135,35 @@ body{
             }
 
         } 
+    }
+
+    
+//pokemon page
+    .details-row{
+        opacity: 1;
+        transition: 0.5s;
+    }
+    .img-pokemon{
+        width: 100%;
+        height: auto;
+        border-radius: 0.75em;
+        background-color: #11111122;
+    }
+    .evo-pill{
+        position: absolute;
+        bottom: 15px;
+        right: 6px;
+    }
+    .details-card{
+        background-size: 10em!important;
+        background-image: url("./components/images/background-pattern-3.png");
+        border-radius: 0.75em;
+        background-color: #eee;
+    }
+    .sprite-pokemon{
+        height: 5em;
+        width: auto;
+    }
+    .big-h1{
+        font-size: 3.5rem!important;  
     }

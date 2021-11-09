@@ -15,6 +15,7 @@ const Navbar = ({ FetchData }) => {
             }
             else{
                 history.push("/pokemon/" + searchValue)
+                handleClick();
             }   
         }
     }
@@ -25,6 +26,7 @@ const Navbar = ({ FetchData }) => {
         }
         else{
             history.push("/pokemon/" + searchValue)
+            handleClick();
         }
     }
 
@@ -46,12 +48,11 @@ const Navbar = ({ FetchData }) => {
                     </Link>
                     <Link className="navbar-brand d-md-block d-none" to="/">Pokédex</Link>
                     <div className="navbar-nav text-center me-auto mb-0">
-                        <Link className="nav-search nav-item nav-link d-md-none" to="/pokedex" onClick={() => handleClick()}>Search</Link>
                         <Link className="nav-about nav-item nav-link" to="/pokedex" onClick={() => handleClick()}>Pokémon List</Link>
                     </div>
-                    <div className="d-flex d-none d-md-flex">
+                    <div className="d-flex ">
                         <input className="form-control me-2" id="search-input" type="search" placeholder="Type a name or id" aria-label="Search" onKeyPress={handleEnter}/>
-                        <button className="btn btn-danger" id="search-button" onClick={() => handleSearchButton()}>Search</button>
+                        <button className="btn btn-warning" id="search-button" onClick={() => handleSearchButton()}>Search</button>
                     </div>
                 </div>
             </div>

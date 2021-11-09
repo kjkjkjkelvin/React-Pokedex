@@ -12,6 +12,27 @@ const PokemonType = ({type}) => {
     );
 }
 
+const SpecieData = ({species, pokemon}) => {
+    if(species.is_mythical){
+        return ( <span className={`evo-pill rounded-pill badge text-capitalize bg-type-mythical`}>Mythical Pokémon</span> );
+    }
+    else if(species.is_legendary){
+        return ( <span className={`evo-pill rounded-pill badge text-capitalize bg-type-legendary`}>Legendary Pokémon</span> );
+    }
+    else if(species.evolves_from_species !== null){
+        let specieData = (species.evolves_from_species.url).split('/');
+
+        return (
+            <Link to={`/pokemon/${specieData[specieData.length -2]}`}>
+                <span className={`evo-pill rounded-pill badge text-capitalize bg-type-${pokemon.types[0].type.name}`}>Evolves from {species.evolves_from_species.name}</span>
+            </Link>
+        );
+    }
+    else{
+        return ( <span className={`evo-pill rounded-pill badge text-capitalize bg-type-${pokemon.types[0].type.name}`}>First Evolution</span> );
+    }
+}
+
 const Pokemon = () => {
     const { id } = useParams();
     const [pokemon, setPokemon] = useState({});
@@ -21,9 +42,11 @@ const Pokemon = () => {
     useEffect(() => {
         setIsLoading(true);
 
+        //species data
         fetch(`https://pokeapi.co/api/v2/pokemon-species/`+id)
         .then(response => response.json())
         .then(data => {
+            //pokemon data
             fetch(`https://pokeapi.co/api/v2/pokemon/`+data.id)
             .then(response => response.json())
             .then(data => {
@@ -33,7 +56,8 @@ const Pokemon = () => {
                 setIsLoading(false);
                 setPokemon({});
             });
-            
+
+
             setSpecies(data);
         }).catch(function(error) {
             setIsLoading(false);
@@ -47,13 +71,13 @@ const Pokemon = () => {
         return (
             <>
                 <div className="container page-container">
-                <div className="row">
-                    <div className="col-12 0ffset-0 col-md-10 offset-md-1 text-center">
-                        <h1 className="text-white">Loading...</h1>
+                    <div className="row">
+                        <header className="text-white px-4 py-5">
+                            <h1 className="text-center">Loading...</h1>
+                        </header>
                     </div>
                 </div>
-                </div>
-                <div className="pokemon-background"></div>
+                <div className="pokemon-background second"></div>
             </>
         )
     }
@@ -61,19 +85,16 @@ const Pokemon = () => {
         <>
             <div className="container page-container">
                 <div className="row">
-                    <div className="col-12 offset-0 col-md-10 offset-md-1 mt-2">
+                    <div className="col-12 offset-0 col-lg-10 offset-lg-1 mt-2">
                         {(Object.keys(pokemon).length !== 0 && Object.keys(species).length !== 0)
                         ?   <div className="row details-row not-loaded">
-                                <div className="col-10 offset-1 col-md-5 offset-md-0">
+                                <div className="col-12 offset-0 col-md-5 offset-md-0">
                                     <div className="col-12 position-relative">
                                         <img className={`img-pokemon mb-2 light-bg-type-${pokemon.types[0].type.name}`} src={pokemon.sprites.other['official-artwork'].front_default} alt="pokemon-img" onLoad={ImgLoaded}/>
-                                        <span className={`evo-pill rounded-pill badge text-capitalize bg-type-${pokemon.types[0].type.name}`}>{species.evolves_from_species !== null
-                                        ? `Evolves from ${species.evolves_from_species.name}`
-                                        : `First Evolution`
-                                        }</span>
+                                        <SpecieData species={species} pokemon={pokemon}/>
                                     </div>
                                 </div>
-                                <div className="col-10 offset-1 col-md-7 offset-md-0">
+                                <div className="col-12 offset-0 col-md-7 offset-md-0">
                                     <div className="col-12">
                                         <div className={`card details-card p-3 lighter-bg-type-${pokemon.types[0].type.name}`}>
                                             <div className="row">
@@ -149,7 +170,7 @@ const Pokemon = () => {
                     </div>
                 </div>
             </div>
-            <div className="pokemon-background first"></div>
+            <div className="pokemon-background second"></div>
         </>
     );
 };
