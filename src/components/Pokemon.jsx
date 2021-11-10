@@ -41,12 +41,13 @@ const Pokemon = () => {
 
     useEffect(() => {
         setIsLoading(true);
-
+        let query = (isNaN(id) ? id.toLowerCase() : id)
         //species data
-        fetch(`https://pokeapi.co/api/v2/pokemon-species/`+id)
+        fetch(`https://pokeapi.co/api/v2/pokemon-species/`+query)
         .then(response => response.json())
         .then(data => {
             //pokemon data
+            let query2 = (isNaN(data.id) ? data.id.toLowerCase() : data.id)
             fetch(`https://pokeapi.co/api/v2/pokemon/`+data.id)
             .then(response => response.json())
             .then(data => {

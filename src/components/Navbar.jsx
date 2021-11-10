@@ -14,7 +14,7 @@ const Navbar = ({ FetchData }) => {
                 alert("Please input a name or id.");
             }
             else{
-                history.push("/pokemon/" + searchValue)
+                history.push("/pokemon/" + searchValue.toLowerCase())
                 handleClick();
             }   
         }
@@ -25,7 +25,7 @@ const Navbar = ({ FetchData }) => {
             alert("Please input a name or id.");
         }
         else{
-            history.push("/pokemon/" + searchValue)
+            history.push("/pokemon/" + searchValue.toLowerCase())
             handleClick();
         }
     }
